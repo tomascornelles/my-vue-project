@@ -27,7 +27,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-$color1: #c00;
+@import "../assets/colors.scss";
 h1, h2 {
   font-weight: normal;
 }
