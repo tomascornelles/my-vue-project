@@ -9,38 +9,45 @@
       <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
       <br>
       <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
     </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'hello',
+  name: 'MyHello',
   data () {
     return {
       msg: 'Mi app'
     }
+  },
+  created: function () {
+    this.$http.get('http://api.open-notify.org/iss-now.json').then(function (resource) {
+      var datos = resource.body.iss_position
+      console.log(datos.latitude)
+      console.log(datos.longitude)
+    })
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-@import "../assets/colors.scss";
-h1, h2 {
-  font-weight: normal;
-}
+  @import "../assets/colors.scss";
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+  h1, h2 {
+    font-weight: normal;
+  }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
   a {
     color: $color1;
   }
