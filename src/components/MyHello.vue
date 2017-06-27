@@ -9,6 +9,9 @@
       <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
       <br>
       <br>
+      <button v-on:click="loadData()">Cargar</button>
+
+      
     </ul>
   </div>
 </template>
@@ -21,11 +24,18 @@ export default {
       msg: 'Mi app'
     }
   },
+  methods: {
+    loadData: function () {
+      this.$http.get('http://api.open-notify.org/iss-now.json').then(function (resource) {
+        var datos = resource.body.iss_position
+        this.msg = datos.latitude + ', ' + datos.longitude
+      })
+    }
+  },
   created: function () {
     this.$http.get('http://api.open-notify.org/iss-now.json').then(function (resource) {
       var datos = resource.body.iss_position
-      console.log(datos.latitude)
-      console.log(datos.longitude)
+      this.msg = datos.latitude + ', ' + datos.longitude
     })
   }
 }
