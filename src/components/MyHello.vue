@@ -26,17 +26,14 @@ export default {
   },
   methods: {
     loadData: function () {
-      this.$http.get('http://api.open-notify.org/iss-now.json').then(function (resource) {
+      this.$http.get('http://api.open-notify.org/iss-now.json').then(resource => {
         var datos = resource.body.iss_position
         this.msg = datos.latitude + ', ' + datos.longitude
       })
     }
   },
   created: function () {
-    this.$http.get('http://api.open-notify.org/iss-now.json').then(function (resource) {
-      var datos = resource.body.iss_position
-      this.msg = datos.latitude + ', ' + datos.longitude
-    })
+    this.loadData()
   }
 }
 </script>
